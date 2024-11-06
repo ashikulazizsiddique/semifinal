@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://example.org/library-management#">
+
+  <rdf:Description rdf:about="http://example.org/library-individuals#Book1">
+    <rdf:type rdf:resource="http://example.org/library-management#Book"/>
+    <ns0:title>The Great Gatsby</ns0:title>
+    <ns0:hasAuthor>
+      <ns0:Author rdf:about="http://example.org/library-individuals#Author1">
+        <ns0:name>F. Scott Fitzgerald</ns0:name>
+      </ns0:Author>
+    </ns0:hasAuthor>
+
+    <ns0:publishedBy rdf:resource="http://example.org/library-individuals#Publisher1"/>
+    <ns0:status>Available</ns0:status>
+  </rdf:Description>
+
+  <ns0:Publisher rdf:about="http://example.org/library-individuals#Publisher1">
+    <ns0:name>Penguin Books</ns0:name>
+  </ns0:Publisher>
+
+  <ns0:Book rdf:about="http://example.org/library-individuals#Book2">
+    <ns0:title>1984</ns0:title>
+    <ns0:hasAuthor>
+      <ns0:Author rdf:about="http://example.org/library-individuals#Author2">
+        <ns0:name>George Orwell</ns0:name>
+      </ns0:Author>
+    </ns0:hasAuthor>
+
+    <ns0:publishedBy rdf:resource="http://example.org/library-individuals#Publisher1"/>
+    <ns0:status>On Loan</ns0:status>
+  </ns0:Book>
+
+  <ns0:Member rdf:about="http://example.org/library-individuals#Member1">
+    <ns0:name>John Doe</ns0:name>
+    <ns0:memberId>M001</ns0:memberId>
+  </ns0:Member>
+
+  <ns0:Loan rdf:about="http://example.org/library-individuals#Loan1">
+    <ns0:contains rdf:resource="http://example.org/library-individuals#Book1"/>
+    <ns0:loanStartDate>2024-11-01</ns0:loanStartDate>
+    <ns0:loanEndDate>2024-11-15</ns0:loanEndDate>
+  </ns0:Loan>
+
+  <ns0:Member rdf:about="http://example.org/library-individuals#Member2">
+    <ns0:name>Jane Smith</ns0:name>
+    <ns0:memberId>M002</ns0:memberId>
+  </ns0:Member>
+
+  <ns0:Reservation rdf:about="http://example.org/library-individuals#Reservation1">
+    <ns0:contains rdf:resource="http://example.org/library-individuals#Book2"/>
+    <ns0:reservationDate>2024-11-02</ns0:reservationDate>
+  </ns0:Reservation>
+
+  <ns0:Librarian rdf:about="http://example.org/library-individuals#Librarian1">
+    <ns0:name>Alice Johnson</ns0:name>
+  </ns0:Librarian>
+
+  <ns0:Library rdf:nodeID="genid1">
+  </ns0:Library>
+
+  <ns0:Members rdf:nodeID="genid2">
+  </ns0:Members>
+
+  <ns0:Librarians rdf:nodeID="genid3">
+  </ns0:Librarians>
+
+</rdf:RDF>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfa="http://www.w3.org/2010/02/rdfa#" xmlns:lib="http://example.org/library-management#" xmlns:ind="http://example.org/library-individuals#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to your CSS file -->
+</head>
+<body>
+
+    <h1>Library Management System</h1>
+
+    <section typeof="lib:Library">
+        <h2>Books</h2>
+        
+        <div resource="http://example.org/library-individuals#Book1" typeof="lib:Book">
+            <h3 property="lib:title">The Great Gatsby</h3>
+            <p>Author: 
+                <span property="lib:hasAuthor" resource="http://example.org/library-individuals#Author1" typeof="lib:Author">
+                    <span property="lib:name">F. Scott Fitzgerald</span>
+                </span>
+            </p>
+            <p>Published By: <span property="lib:publishedBy" resource="http://example.org/library-individuals#Publisher1" typeof="lib:Publisher">
+                <span property="lib:name">Penguin Books</span>
+            </span></p>
+            <p>Status: <span property="lib:status">Available</span></p>
+        </div>
+
+        <div resource="http://example.org/library-individuals#Book2" typeof="lib:Book">
+            <h3 property="lib:title">1984</h3>
+            <p>Author: 
+                <span property="lib:hasAuthor" resource="http://example.org/library-individuals#Author2" typeof="lib:Author">
+                    <span property="lib:name">George Orwell</span>
+                </span>
+            </p>
+            <p>Published By: <span property="lib:publishedBy" resource="http://example.org/library-individuals#Publisher1" typeof="lib:Publisher">
+                <span property="lib:name">Penguin Books</span>
+            </span></p>
+            <p>Status: <span property="lib:status">On Loan</span></p>
+        </div>
+    </section>
+
+    <section typeof="lib:Members">
+        <h2>Members</h2>
+
+        <div resource="http://example.org/library-individuals#Member1" typeof="lib:Member">
+            <h3 property="lib:name">John Doe</h3>
+            <p>Member ID: <span property="lib:memberId">M001</span></p>
+            <p>Current Loans:</p>
+            <ul>
+                <li resource="http://example.org/library-individuals#Loan1" typeof="lib:Loan">
+                    <span property="lib:contains" resource="http://example.org/library-individuals#Book1">The Great Gatsby</span>
+                    <p>Loan Start Date: <span property="lib:loanStartDate">2024-11-01</span></p>
+                    <p>Loan End Date: <span property="lib:loanEndDate">2024-11-15</span></p>
+                </li>
+            </ul>
+        </div>
+
+        <div resource="http://example.org/library-individuals#Member2" typeof="lib:Member">
+            <h3 property="lib:name">Jane Smith</h3>
+            <p>Member ID: <span property="lib:memberId">M002</span></p>
+            <p>Reservations:</p>
+            <ul>
+                <li resource="http://example.org/library-individuals#Reservation1" typeof="lib:Reservation">
+                    <span property="lib:contains" resource="http://example.org/library-individuals#Book2">1984</span>
+                    <p>Reservation Date: <span property="lib:reservationDate">2024-11-02</span></p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section typeof="lib:Librarians">
+        <h2>Librarians</h2>
+        
+        <div resource="http://example.org/library-individuals#Librarian1" typeof="lib:Librarian">
+            <h3 property="lib:name">Alice Johnson</h3>
+        </div>
+    </section>
+
+</body>
+</html>

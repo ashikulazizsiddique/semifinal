@@ -1,0 +1,44 @@
+@prefix lib: <http://example.org/library-management#> .
+@prefix ind: <http://example.org/library-individuals#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ind:Book1 a lib:Book ;
+    lib:title "The Great Gatsby" ;
+    lib:hasAuthor ind:Author1 ;
+    lib:publishedBy ind:Publisher1 .
+
+ind:Book2 a lib:Book ;
+    lib:title "1984" ;
+    lib:hasAuthor ind:Author2 ;
+    lib:publishedBy ind:Publisher1 .
+
+ind:Author1 a lib:Author ;
+    lib:name "F. Scott Fitzgerald" .
+
+ind:Author2 a lib:Author ;
+    lib:name "George Orwell" .
+
+ind:Member1 a lib:Member ;
+    lib:memberId "M001" ;
+    lib:name "John Doe" .
+
+ind:Member2 a lib:Member ;
+    lib:memberId "M002" ;
+    lib:name "Jane Smith" .
+
+ind:Librarian1 a lib:Librarian ;
+    lib:name "Alice Johnson" .
+
+ind:Publisher1 a lib:Publisher ;
+    lib:name "Penguin Books" .
+
+ind:Loan1 a lib:Loan ;
+    lib:borrowedBy ind:Member1 ;
+    lib:loanStartDate "2024-11-01"^^xsd:date ;
+    lib:loanEndDate "2024-11-15"^^xsd:date ;
+    lib:contains ind:Book1 .
+
+ind:Reservation1 a lib:Reservation ;
+    lib:reservedBy ind:Member2 ;
+    lib:reservationDate "2024-11-02"^^xsd:date ;
+    lib:contains ind:Book2 .

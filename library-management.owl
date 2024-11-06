@@ -1,0 +1,155 @@
+<rdf:RDF xmlns="http://example.org/library-management#"
+     xml:base="http://example.org/library-management"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://example.org/library-management"/>
+
+    <!-- Classes -->
+    <owl:Class rdf:about="#Book"/>
+    <owl:Class rdf:about="#Author"/>
+    <owl:Class rdf:about="#Publisher"/>
+    <owl:Class rdf:about="#Library"/>
+    <owl:Class rdf:about="#Member"/>
+    <owl:Class rdf:about="#Loan"/>
+    <owl:Class rdf:about="#Reservation"/>
+    <owl:Class rdf:about="#Genre"/>
+    <owl:Class rdf:about="#Shelf"/>
+    <owl:Class rdf:about="#Librarian"/>
+    <owl:Class rdf:about="#DigitalResource"/>
+    <owl:Class rdf:about="#PrintedResource"/>
+    <owl:Class rdf:about="#Journal"/>
+    <owl:Class rdf:about="#Magazine"/>
+    <owl:Class rdf:about="#Newspaper"/>
+    <owl:Class rdf:about="#EBook"/>
+    <owl:Class rdf:about="#AudioBook"/>
+    <owl:Class rdf:about="#DVD"/>
+    <owl:Class rdf:about="#CD"/>
+    <owl:Class rdf:about="#ResearchPaper"/>
+
+    <!-- Enumeration Class -->
+    <owl:Class rdf:about="#Genre">
+        <owl:oneOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Fiction"/>
+            <rdf:Description rdf:about="#NonFiction"/>
+            <rdf:Description rdf:about="#Mystery"/>
+            <rdf:Description rdf:about="#ScienceFiction"/>
+            <rdf:Description rdf:about="#Biography"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <!-- Cardinality Restriction -->
+    <owl:Class rdf:about="#Library">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#managedBy"/>
+                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <!-- Range Restriction -->
+    <owl:Class rdf:about="#Loan">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#loanStartDate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#loanEndDate"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <!-- Union of Classes -->
+    <owl:Class rdf:about="#DigitalResource">
+        <owl:unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#EBook"/>
+            <rdf:Description rdf:about="#AudioBook"/>
+            <rdf:Description rdf:about="#DVD"/>
+            <rdf:Description rdf:about="#CD"/>
+        </owl:unionOf>
+    </owl:Class>
+
+    <!-- Intersection of Classes -->
+    <owl:Class rdf:about="#PrintedResource">
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Book"/>
+            <rdf:Description rdf:about="#Journal"/>
+            <rdf:Description rdf:about="#Magazine"/>
+            <rdf:Description rdf:about="#Newspaper"/>
+        </owl:intersectionOf>
+    </owl:Class>
+
+    <!-- Complement of Class -->
+    <owl:Class rdf:about="#NonDigitalResource">
+        <owl:complementOf rdf:resource="#DigitalResource"/>
+    </owl:Class>
+
+    <!-- Object Properties -->
+    <owl:ObjectProperty rdf:about="#hasAuthor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Book"/>
+        <rdfs:range rdf:resource="#Author"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#publishedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Book"/>
+        <rdfs:range rdf:resource="#Publisher"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#borrowedBy">
+        <rdfs:domain rdf:resource="#Loan"/>
+        <rdfs:range rdf:resource="#Member"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#reservedBy">
+        <rdfs:domain rdf:resource="#Reservation"/>
+        <rdfs:range rdf:resource="#Member"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#locatedAt">
+        <rdfs:domain rdf:resource="#Book"/>
+        <rdfs:range rdf:resource="#Shelf"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#managedBy">
+        <rdfs:domain rdf:resource="#Library"/>
+        <rdfs:range rdf:resource="#Librarian"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#contains">
+        <rdfs:domain rdf:resource="#Library"/>
+        <rdfs:range rdf:resource="#Book"/>
+    </owl:ObjectProperty>
+
+    <!-- Datatype Properties -->
+    <owl:DatatypeProperty rdf:about="#title">
+        <rdfs:domain rdf:resource="#Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#publicationYear">
+        <rdfs:domain rdf:resource="#Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#isbn">
+        <rdfs:domain rdf:resource="#Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#memberId">
+        <rdfs:domain rdf:resource="#Member"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#loanStartDate">
+        <rdfs:domain rdf:resource="#Loan"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#loanEndDate">
+        <rdfs:domain rdf:resource="#Loan"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#reservationDate">
+        <rdfs:domain rdf:resource="#Reservation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    </owl:DatatypeProperty>
+
+</rdf:RDF>
